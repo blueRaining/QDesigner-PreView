@@ -1,0 +1,163 @@
+.loadingWrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(ellipse at center, #0a0a12 0%, #000 100%);
+    overflow: hidden;
+}
+
+/* 背景粒子光点 */
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(255, 160, 40, 0.6);
+    box-shadow: 0 0 6px 1px rgba(255, 160, 40, 0.4);
+    animation: particle-float 4s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { left: 15%; top: 20%; animation-delay: 0s; animation-duration: 5s; }
+.particle:nth-child(2) { left: 70%; top: 65%; animation-delay: 0.8s; animation-duration: 4.2s; }
+.particle:nth-child(3) { left: 40%; top: 80%; animation-delay: 1.6s; animation-duration: 5.5s; }
+.particle:nth-child(4) { left: 85%; top: 30%; animation-delay: 0.4s; animation-duration: 4.8s; }
+.particle:nth-child(5) { left: 25%; top: 55%; animation-delay: 2.2s; animation-duration: 5.2s; }
+.particle:nth-child(6) { left: 55%; top: 15%; animation-delay: 1.2s; animation-duration: 4.5s; }
+.particle:nth-child(7) { left: 80%; top: 75%; animation-delay: 0.6s; animation-duration: 5.8s; }
+.particle:nth-child(8) { left: 10%; top: 45%; animation-delay: 2.0s; animation-duration: 4.3s; }
+
+/* 立方体容器 */
+.cubeWrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 立方体底部光晕 */
+.glow {
+    position: absolute;
+    bottom: -30px;
+    width: 120px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(255, 160, 40, 0.35) 0%, transparent 70%);
+    filter: blur(6px);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* 立方体场景 */
+.cubeScene {
+    width: 70px;
+    height: 70px;
+    perspective: 200px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cube-rotate 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.cube div {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 1.5px solid;
+    border-image: linear-gradient(135deg, rgba(255, 200, 60, 0.95), rgba(255, 120, 20, 0.7)) 1;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 160, 40, 0.12) 0%,
+        rgba(255, 120, 20, 0.06) 50%,
+        rgba(255, 80, 0, 0.12) 100%
+    );
+    box-shadow:
+        0 0 20px rgba(255, 150, 30, 0.2),
+        inset 0 0 20px rgba(255, 150, 30, 0.05);
+    backdrop-filter: blur(1px);
+}
+
+.front  { transform: translateZ(35px); }
+.back   { transform: rotateY(180deg) translateZ(35px); }
+.right  { transform: rotateY(90deg) translateZ(35px); }
+.left   { transform: rotateY(-90deg) translateZ(35px); }
+.top    { transform: rotateX(90deg) translateZ(35px); }
+.bottom { transform: rotateX(-90deg) translateZ(35px); }
+
+/* 文字 */
+.text {
+    margin-top: 40px;
+    color: rgba(255, 180, 60, 0.85);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-shadow:
+        0 0 10px rgba(255, 160, 40, 0.5),
+        0 0 30px rgba(255, 120, 20, 0.2);
+    animation: text-breathe 2.5s ease-in-out infinite;
+}
+
+/* 底部进度光条 */
+.progressBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.progressLight {
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 160, 40, 0.7), transparent);
+    animation: progress-sweep 2s ease-in-out infinite;
+}
+
+/* 动画 */
+@keyframes cube-rotate {
+    0%   { transform: rotateX(-20deg) rotateY(0deg); }
+    100% { transform: rotateX(-20deg) rotateY(360deg); }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.5; transform: scaleX(1); }
+    50%      { opacity: 1; transform: scaleX(1.3); }
+}
+
+@keyframes text-breathe {
+    0%, 100% { opacity: 0.7; }
+    50%      { opacity: 1; }
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-30px) scale(1.5);
+        opacity: 0.8;
+    }
+}
+
+@keyframes progress-sweep {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(430%); }
+}
