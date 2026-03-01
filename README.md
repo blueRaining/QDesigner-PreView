@@ -105,12 +105,4 @@ npm run build
   "environment": "environment.env"
 }
 ```
-
-## 功能特性
-
-- 支持 `.rain`（Babylon.js 场景文件）和 `.glb` 模型格式
-- 支持 HDR/ENV 环境球加载
-- 自动适配移动端（开启性能优化模式）
-- 窗口自适应缩放
-- 3D 立方体加载动画
-- 支持从 QDesigner 导出的 ZIP 存档直接加载
+ 
